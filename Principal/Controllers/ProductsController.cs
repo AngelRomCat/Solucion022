@@ -15,9 +15,32 @@ namespace Principal.Controllers
         private NorthWindDbContext db = new NorthWindDbContext();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? id, bool? category)
         {
-            var products = db.Products.Include(p => p.Categories).Include(p => p.suppliers);
+            IList<Products> products = db.Products
+                .Include(p => p.Categories)
+                .Include(p => p.suppliers)
+                .ToList();
+            if (id != null && id > 0 && category != null)
+            {
+                if (category == true)
+                {
+                    products = products.Where(x => x.CategoryID == id).ToList();
+                    if (products != null && products.Count() > 0)
+                    {
+                        ViewBag.Message = "Productos de la Categoría: " + products.FirstOrDefault().Categories.CategoryName;
+                    }
+                }
+                else
+                {
+                    products = products.Where(x => x.supplierID == id).ToList();
+                    if (products != null && products.Count() > 0)
+                    {
+                        ViewBag.Message = "Productos del Proveedor: " + products.FirstOrDefault().suppliers.supplierName;
+                    }
+                }
+            }
+
             return View(products.ToList());
         }
 

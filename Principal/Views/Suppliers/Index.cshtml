@@ -59,9 +59,10 @@
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.supplierID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.supplierID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.supplierID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.supplierID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.supplierID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.supplierID }) |
+            @Html.ActionLink("Productos del Proveedor", "Index", "Products", new { id = item.supplierID, category = false }, null)
         </td>
     </tr>
 }

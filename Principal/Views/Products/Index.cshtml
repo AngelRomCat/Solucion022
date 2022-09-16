@@ -2,9 +2,15 @@
 
 @{
     ViewBag.Title = "Index";
+    string madre = "";
+    if (ViewBag.Message != null && ViewBag.Message != "")
+    {
+        madre = ViewBag.Message;
+    }
 }
 
 <h2>Index</h2>
+<h2>@madre</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,29 +35,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categories.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.suppliers.supplierName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categories.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.suppliers.supplierName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+            </td>
+        </tr>
+    }
 
 </table>
